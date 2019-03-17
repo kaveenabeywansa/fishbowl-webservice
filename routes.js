@@ -1,7 +1,7 @@
 const express = require('express');
 var Routes = express.Router();
 
-// const ControllerName = require('./Controller/ControllerName');
+const FishController = require('./controller/fish-route');
 
-// Routes.use('/URL_HERE/', ControllerName);
+Routes.use('/fish/', FishController);
 module.exports = Routes;

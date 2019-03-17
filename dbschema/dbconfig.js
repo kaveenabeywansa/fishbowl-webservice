@@ -9,7 +9,7 @@ const Fish = new Schema({
 
 mongoose.model('Fish', Fish);
 
-mongoose.connect('mongodb://127.0.0.1:27017/fishbowl', function (err) {
+mongoose.connect('mongodb://127.0.0.1:27017/fishbowl', { useNewUrlParser: true }, function (err) {
     if (err) {
         console.log(err);
         process.exit(-1);
