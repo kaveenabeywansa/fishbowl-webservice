@@ -1,0 +1,25 @@
+{
+  "name": "com.fishbowl.learn.backend",
+  "version": "1.0.0",
+  "description": "The backend of the FishBowl android app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/kaveenabeywansa/fishbowl-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/kaveenabeywansa/fishbowl-backend/issues"
+  },
+  "homepage": "https://gitlab.com/kaveenabeywansa/fishbowl-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.19"
+  }
+}
