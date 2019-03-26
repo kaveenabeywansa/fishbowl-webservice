@@ -18,7 +18,9 @@ router.get('/', function (req, res) {
 });
 router.get('/:id', function (req, res) {
     Controller.getFile(req.params.id).then(function (data) {
-        res.status(data.status).send({ data: data.file });
+        res.writeHead(data.status, { 'Content-Type': data.contentType });
+        res.end(data.binary); // send the image as a response
+        // res.download("./uploads/20190327005115.jpg"); // directly downloads the file
     }).catch(function (reason) {
         res.status(reason.status).send({ message: reason.message });
     })

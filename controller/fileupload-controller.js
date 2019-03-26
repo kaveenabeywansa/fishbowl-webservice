@@ -58,7 +58,20 @@ var Controller = function () {
     };
     this.getFile = function (id) {
         return new Promise(function (resolve, reject) {
-            //
+            try {
+                const filePath = "./uploads/" + id
+                const fileExist = fs.existsSync(filePath);
+                if (fileExist) {
+                    var img = fs.readFileSync(filePath);
+                    resolve({ status: 200, 'contentType': 'image/jpg', binary: img });
+                } else {
+                    reject({ status: 500, message: "File not found !" });
+                }
+            } catch (exception) {
+                console.log(exception.message);
+                reject({ status: 404, message: exception.message });
+            }
+
         })
     }; this.deleteFile = function (id) {
         return new Promise(function (resolve, reject) {
