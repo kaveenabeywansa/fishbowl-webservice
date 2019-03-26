@@ -4,7 +4,7 @@ const Controller = require('../controller/fileupload-controller');
 
 router.post('/', function (req, res) {
     Controller.uploadFile(req.files).then(function (data) {
-        res.status(data.status).send({ message: data.message });
+        res.status(data.status).send({ message: data.message, file: data.filename });
     }).catch(function (reason) {
         res.status(reason.status).send({ message: reason.message });
     })
