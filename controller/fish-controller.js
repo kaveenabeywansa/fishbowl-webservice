@@ -7,7 +7,7 @@ var Controller = function () {
             var Fish = FishSchema({
                 name: data.name,
                 desc: data.desc,
-                img: { data: data.imgData, contentType: data.imgType }
+                img: data.img
             });
             Fish.save().then(function () {
                 resolve({ status: 200, message: "Successfully Added !" });

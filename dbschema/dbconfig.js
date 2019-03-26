@@ -4,10 +4,16 @@ const Schema = mongoose.Schema;
 const Fish = new Schema({
     name: String,
     desc: String,
-    img: { data: Buffer, contentType: String }
+    img: String
 });
 
+// const Files = new Schema({
+//     filepath: String,
+//     contentType: String
+// });
+
 mongoose.model('Fish', Fish);
+// mongoose.model('Files', Files);
 
 mongoose.connect('mongodb://127.0.0.1:27017/fishbowl', { useNewUrlParser: true }, function (err) {
     if (err) {

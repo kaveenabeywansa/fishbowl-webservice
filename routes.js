@@ -1,7 +1,10 @@
 const express = require('express');
 var Routes = express.Router();
 
-const FishController = require('./controller/fish-route');
+const FishRoutes = require('./route/fish-route');
+const FileUploadRoutes = require('./route/fileupload-route');
 
-Routes.use('/fish/', FishController);
+Routes.use('/fish/', FishRoutes);
+Routes.use('/file/', FileUploadRoutes);
+
 module.exports = Routes;
