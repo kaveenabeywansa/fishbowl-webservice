@@ -1,5 +1,6 @@
 const mongoose = require('../dbschema/dbconfig');
 // const FileSchema = mongoose.model('Files');
+var mime = require('mime-types')
 var path = require('path');
 var fs = require('fs');
 
@@ -59,11 +60,12 @@ var Controller = function () {
     this.getFile = function (id) {
         return new Promise(function (resolve, reject) {
             try {
-                const filePath = "./uploads/" + id
+                const filePath = "./uploads/" + id;
+                const contentType = mime.lookup(filePath);
                 const fileExist = fs.existsSync(filePath);
                 if (fileExist) {
                     var img = fs.readFileSync(filePath);
-                    resolve({ status: 200, 'contentType': 'image/jpg', binary: img });
+                    resolve({ status: 200, 'contentType': contentType, binary: img });
                 } else {
                     reject({ status: 500, message: "File not found !" });
                 }
