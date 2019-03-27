@@ -29,15 +29,29 @@ var Controller = function () {
     };
     this.getOneUser = function (id) {
         return new Promise(function (resolve, reject) {
-            UserSchema.find({ _id: id }).exec().then(function (value) {
+            UserSchema.findOne({ username: id }).exec().then(function (value) {
                 resolve({ status: 200, user: value });
             }).catch(function (reason) {
                 reject({ status: 404, message: "ID not found: " + reason });
             })
         })
-    }; this.deleteUser = function (id) {
+    };
+    this.login = function (data) {
         return new Promise(function (resolve, reject) {
-            UserSchema.remove({ _id: id }).then(function () {
+            UserSchema.findOne({ username: data.username }).exec().then(function (value) {
+                if(value.password == data.password){
+                    resolve({ status: 200, message: "Welcome "+value.name, logged: true });
+                } else {
+                    reject({ status: 401, message: "Incorrect Password !", logged: false });
+                }
+            }).catch(function (reason) {
+                reject({ status: 401, message: "User not found: ", logged: false });
+            })
+        })
+    };
+    this.deleteUser = function (id) {
+        return new Promise(function (resolve, reject) {
+            UserSchema.remove({ username: id }).then(function () {
                 resolve({ status: 200, message: "Deleted" });
             }).catch(function (reason) {
                 reject({ status: 404, message: "ID not found: " + reason });
