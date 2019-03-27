@@ -6,7 +6,10 @@ var Controller = function () {
         return new Promise(function (resolve, reject) {
             var Fish = FishSchema({
                 name: data.name,
+                category: data.category,
                 desc: data.desc,
+                length: data.length,
+                mass: data.mass,
                 img: data.img
             });
             Fish.save().then(function () {
@@ -27,7 +30,7 @@ var Controller = function () {
     };
     this.getOneFish = function (id) {
         return new Promise(function (resolve, reject) {
-            FishSchema.find({ _id: id }).exec().then(function (value) {
+            FishSchema.findOne({ _id: id }).exec().then(function (value) {
                 resolve({ status: 200, fish: value });
             }).catch(function (reason) {
                 reject({ status: 404, message: "ID not found: " + reason });

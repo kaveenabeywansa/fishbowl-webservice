@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 
 const Fish = new Schema({
     name: String,
+    category: String,
     desc: String,
+    length: Number,
+    mass: Number,
     img: String
 });
 
