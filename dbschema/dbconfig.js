@@ -7,12 +7,21 @@ const Fish = new Schema({
     img: String
 });
 
+const User = new Schema({
+    name: String,
+    username: String,
+    password: String,
+    email: String,
+    userlevel: String
+})
+
 // const Files = new Schema({
 //     filepath: String,
 //     contentType: String
 // });
 
 mongoose.model('Fish', Fish);
+mongoose.model('User', User);
 // mongoose.model('Files', Files);
 
 mongoose.connect('mongodb://127.0.0.1:27017/fishbowl', { useNewUrlParser: true }, function (err) {
