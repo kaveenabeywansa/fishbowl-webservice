@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
 });
 router.get('/:id', function (req, res) {
     Controller.getOneFish(req.params.id).then(function (data) {
-        res.status(data.status).send({ data: data.fish });
+        res.status(data.status).send(data.fish);
     }).catch(function (reason) {
         res.status(reason.status).send({ message: reason.message });
     })
