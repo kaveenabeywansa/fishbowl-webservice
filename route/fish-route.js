@@ -23,6 +23,20 @@ router.get('/:id', function (req, res) {
         res.status(reason.status).send({ message: reason.message });
     })
 });
+router.get('/category/:id', function (req, res) {
+    Controller.getCategory(req.params.id).then(function (data) {
+        res.status(data.status).send({ data: data.fishdata });
+    }).catch(function (reason) {
+        res.status(reason.status).send({ message: reason.message });
+    })
+});
+router.get('/search/:id', function (req, res) {
+    Controller.getSearchKeywords(req.params.id).then(function (data) {
+        res.status(data.status).send({ data: data.fishdata });
+    }).catch(function (reason) {
+        res.status(reason.status).send({ message: reason.message });
+    })
+});
 router.delete('/:id', function (req, res) {
     Controller.deleteFish(req.params.id).then(function (data) {
         res.status(data.status).send({ data: data.message });

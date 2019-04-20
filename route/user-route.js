@@ -4,9 +4,9 @@ const Controller = require('../controller/user-controller');
 
 router.post('/login', function (req, res) {
     Controller.login(req.body).then(function (data) {
-        res.status(data.status).send({ message: data.message, logged: data.logged });
+      res.status(data.status).send({ message: data.message, logged: data.logged });
     }).catch(function (reason) {
-        res.status(reason.status).send({ message: reason.message, logged: reason.logged });
+      res.status(reason.status).send({ message: reason.message, logged: reason.logged });
     })
 });
 router.post('/', function (req, res) {
