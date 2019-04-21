@@ -36,7 +36,26 @@ var Controller = function () {
                 reject({ status: 404, message: "ID not found: " + reason });
             })
         })
-    }; this.deleteFish = function (id) {
+    };
+    this.getCategory = function (id) {
+        return new Promise(function (resolve, reject) {
+            FishSchema.find({ category: id }).exec().then(function (value) {
+                resolve({ status: 200, fishdata: value });
+            }).catch(function (reason) {
+                reject({ status: 404, message: "Category Not Found: " + reason });
+            })
+        })
+    };
+    this.getSearchKeywords = function (id) {
+        return new Promise(function (resolve, reject) {
+            FishSchema.find({ desc: { "$regex": id, "$options": "i" } }).exec().then(function (value) {
+                resolve({ status: 200, fishdata: value });
+            }).catch(function (reason) {
+                reject({ status: 404, message: "Category Not Found: " + reason });
+            })
+        })
+    };
+    this.deleteFish = function (id) {
         return new Promise(function (resolve, reject) {
             FishSchema.remove({ _id: id }).then(function () {
                 resolve({ status: 200, message: "Deleted" });

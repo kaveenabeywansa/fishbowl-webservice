@@ -15,7 +15,7 @@ const User = new Schema({
     username: String,
     password: String,
     email: String,
-    userlevel: String
+    userlevel: Number
 })
 
 // const Files = new Schema({
