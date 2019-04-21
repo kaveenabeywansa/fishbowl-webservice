@@ -45,7 +45,44 @@ var Controller = function () {
                     reject({ status: 401, message: "Incorrect Password !", logged: false });
                 }
             }).catch(function (reason) {
-                reject({ status: 401, message: "User not found: ", logged: false });
+                reject({ status: 401, message: "User not found ! ", logged: false });
+            })
+        })
+    };
+    this.pointsUp = function (id) {
+        return new Promise(function (resolve, reject) {
+            UserSchema.findOne({ username: id }).exec().then(function (value) {
+                var points = value.userlevel;
+                points += 1;
+                value.userlevel = points;
+                value.save();
+                resolve({ status:200, message: "Successfully updated points !" });
+            }).catch(function (reason) {
+                reject({ status: 401, message: "User not found ! " });
+            })
+        })
+    };
+    this.changePassword = function (id, data) {
+        return new Promise(function (resolve, reject) {
+            UserSchema.findOne({ username: id }).exec().then(function (value) {
+                value.password = data.password;
+                value.save();
+                resolve({ status:200, message: "Password Successfully Changed !" });
+            }).catch(function (reason) {
+                reject({ status: 401, message: "User not found ! " });
+            })
+        })
+    };
+    this.editProfile = function (id, data) {
+        return new Promise(function (resolve, reject) {
+            UserSchema.findOne({ username: id }).exec().then(function (value) {
+                value.name = data.name;
+                value.username = data.username;
+                value.email = data.email;
+                value.save();
+                resolve({ status:200, message: "Profile Updated Successfully !" });
+            }).catch(function (reason) {
+                reject({ status: 401, message: "User not found ! " });
             })
         })
     };
