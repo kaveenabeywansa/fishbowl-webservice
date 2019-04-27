@@ -57,7 +57,7 @@ var Controller = function () {
     };
     this.deleteFish = function (id) {
         return new Promise(function (resolve, reject) {
-            FishSchema.remove({ _id: id }).then(function () {
+            FishSchema.deleteOne({ _id: id }).then(function () {
                 resolve({ status: 200, message: "Deleted" });
             }).catch(function (reason) {
                 reject({ status: 404, message: "ID not found: " + reason });
