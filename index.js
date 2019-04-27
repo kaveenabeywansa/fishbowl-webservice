@@ -4,14 +4,14 @@ const app = express();
 const upload = require("express-fileupload");
 const BodyParser = require('body-parser');
 const Routes = require('./routes');
-const portNo = 7001;
+const portNo = process.env.PORT || 80;
 
 app.use(upload());
 app.use(BodyParser.json());
 app.use(cors());
 app.use('/', Routes);
 
-app.listen(portNo, '0.0.0.0', function (err) {
+app.listen(portNo, function (err) {
     if (err) {
         console.log(err);
         process.exit(-1);

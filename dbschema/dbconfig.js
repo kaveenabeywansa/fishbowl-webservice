@@ -18,16 +18,10 @@ const User = new Schema({
     userlevel: Number
 })
 
-// const Files = new Schema({
-//     filepath: String,
-//     contentType: String
-// });
-
 mongoose.model('Fish', Fish);
 mongoose.model('User', User);
-// mongoose.model('Files', Files);
 
-mongoose.connect('mongodb://127.0.0.1:27017/fishbowl', { useNewUrlParser: true }, function (err) {
+mongoose.connect('mongodb://localhost:27017/fishbowl', { useNewUrlParser: true }, function (err) {
     if (err) {
         console.log(err);
         process.exit(-1);
