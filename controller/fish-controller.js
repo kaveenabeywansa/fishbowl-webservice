@@ -55,9 +55,25 @@ var Controller = function () {
             })
         })
     };
+    this.editFishDetails = function (id, data) {
+        return new Promise(function (resolve, reject) {
+            FishSchema.findOne({ _id: id }).exec().then(function (value) {
+                value.name = data.name;
+                value.category = data.category;
+                value.desc = data.desc;
+                value.length = data.length;
+                value.mass = data.mass;
+                value.img = data.img;
+                value.save();
+                resolve({ status: 200, message: "Profile Updated Successfully !" });
+            }).catch(function (reason) {
+                reject({ status: 401, message: "Fish not found ! " });
+            })
+        })
+    };
     this.deleteFish = function (id) {
         return new Promise(function (resolve, reject) {
-            FishSchema.remove({ _id: id }).then(function () {
+            FishSchema.deleteOne({ _id: id }).then(function () {
                 resolve({ status: 200, message: "Deleted" });
             }).catch(function (reason) {
                 reject({ status: 404, message: "ID not found: " + reason });

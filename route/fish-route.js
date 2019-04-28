@@ -37,6 +37,13 @@ router.get('/search/:id', function (req, res) {
         res.status(reason.status).send({ message: reason.message });
     })
 });
+router.put('/:id', function (req, res) {
+    Controller.editFishDetails(req.params.id, req.body).then(function (data) {
+        res.status(data.status).send({ message: data.message });
+    }).catch(function (reason) {
+        res.status(reason.status).send({ message: reason.message });
+    })
+});
 router.delete('/:id', function (req, res) {
     Controller.deleteFish(req.params.id).then(function (data) {
         res.status(data.status).send({ data: data.message });
