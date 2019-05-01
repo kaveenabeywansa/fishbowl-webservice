@@ -10,7 +10,8 @@ var Controller = function () {
                 desc: data.desc,
                 length: data.length,
                 mass: data.mass,
-                img: data.img
+                img: data.img,
+                views: data.views
             });
             Fish.save().then(function () {
                 resolve({ status: 200, message: "Successfully Added !" });
@@ -31,6 +32,8 @@ var Controller = function () {
     this.getOneFish = function (id) {
         return new Promise(function (resolve, reject) {
             FishSchema.findOne({ _id: id }).exec().then(function (value) {
+                value.views++;
+                value.save();
                 resolve({ status: 200, fish: value });
             }).catch(function (reason) {
                 reject({ status: 404, message: "ID not found: " + reason });

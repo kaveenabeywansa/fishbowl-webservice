@@ -7,7 +7,8 @@ const Fish = new Schema({
     desc: String,
     length: Number,
     mass: Number,
-    img: String
+    img: String,
+    views: Number
 });
 
 const User = new Schema({
